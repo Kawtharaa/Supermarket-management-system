@@ -9,6 +9,7 @@ package supermarket;
  * @author shahd
  */
 public class Login extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form Login
