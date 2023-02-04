@@ -17,7 +17,7 @@ public class Products extends javax.swing.JFrame {
      */
     public Products() {
         initComponents();
-        System.out.println("Hello");
+        
     }
 
     /**
