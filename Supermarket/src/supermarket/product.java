@@ -14,13 +14,14 @@ import javax.swing.table.*;
 import java.io.*;
 import java.util.Scanner;
 import java.lang.*;
+import javax.swing.JTable;
 
 
 
 
 public class product //extend sections  
 {
-    
+    JTable jTable1;
     
         
         

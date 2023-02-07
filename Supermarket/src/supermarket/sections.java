@@ -10,13 +10,21 @@ package supermarket;
  *
  * @author shahd
  */
+import java.sql.*;
+import java.util.Scanner;
+import net.proteanit.sql.DbUtils;
 public class sections extends javax.swing.JFrame {
 
     /**
      * Creates new form CATEGORY
      */
+    private Connection con;
+    private Statement statement;
+    private ResultSet rs;
+    
     public sections() {
         initComponents();
+       
     }
 
     /**
@@ -75,6 +83,16 @@ public class sections extends javax.swing.JFrame {
 
         jTextField3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(102, 153, 255));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 153, 255));
@@ -308,6 +326,16 @@ public class sections extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        jTable1.setModel(dataModel);
+         try{
+            con = DriverManager.getConnection("\"C:\\Users\\fatim\\Desktop\\DB\\Supermarket-management-system-master\\SuperMarket_PROJECT.sql\"", "root","FHA6-fha6" );
+            statement=con.createStatement();
+            rs=statement.executeQuery("INSERT INTO sections values(?,?,?,?)");
+        }
+        catch(SQLException se){
+            se.printStackTrace();
+        }
+          jTable1.setModel(DbUtils.resultSetToTableModel(rs));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -321,6 +349,15 @@ public class sections extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+      String caID=evt.getActionCommand();
+        
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3KeyTyped
 
     /**
      * @param args the command line arguments

@@ -13,19 +13,20 @@ package supermarket;
 import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 ///////////////////////////////////////////////////////import net.proteanit.sql.DbUtils;
 
-public class Products extends javax.swing.JFrame {
+public class Product1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Products
+     * Creates new form Product1
      */
     
     private static final String DATABASEURL=" ";
     private static final String USERNAME= " ";
     private static final String PASSWORD = "";
     
-    public Products() {
+    public Product1() {
         super("Products on DB");
         initComponents();
       
@@ -66,7 +67,7 @@ public class Products extends javax.swing.JFrame {
             User s1 = new User();
        // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-//        while (idText.getText().equals("") || nameText.getText().equals("") || priceText.getText().equals("") || quantityText.getText().toString().equals("") 
+//        while (Product1.getText().equals("") || nameText.getText().equals("") || priceText.getText().equals("") || quantityText.getText().toString().equals("") 
 //                || categoryText.getText().toString().equals("")) {
 //            JOptionPane.showMessageDialog(null, "Please fill in the required fields");
 //            return;
@@ -427,8 +428,12 @@ public class Products extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(642, 642, 642)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -483,6 +488,7 @@ public class Products extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void aadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aadButtonActionPerformed
+
 
         // TODO add your handling code here:
     }//GEN-LAST:event_aadButtonActionPerformed
