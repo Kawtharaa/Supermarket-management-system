@@ -12,7 +12,9 @@ package supermarket;
  */
 import java.sql.*;
 import java.util.Scanner;
-import net.proteanit.sql.DbUtils;
+
+
+
 public class sections extends javax.swing.JFrame {
 
     /**
@@ -326,7 +328,6 @@ public class sections extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        jTable1.setModel(dataModel);
          try{
             con = DriverManager.getConnection("\"C:\\Users\\fatim\\Desktop\\DB\\Supermarket-management-system-master\\SuperMarket_PROJECT.sql\"", "root","FHA6-fha6" );
             statement=con.createStatement();
