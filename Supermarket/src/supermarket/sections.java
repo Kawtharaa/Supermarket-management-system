@@ -21,11 +21,12 @@ public class sections extends javax.swing.JFrame {
      * Creates new form CATEGORY
      */
     private Connection con;
-    private Statement statement;
-    private ResultSet rs;
-    
+     String SID;
+     String aisle;
+     String Sname;
     public sections() {
         initComponents();
+        
        
     }
 
@@ -77,7 +78,7 @@ public class sections extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel3.setText("CATID");
+        jLabel3.setText("SNumber");
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 153, 255));
@@ -98,10 +99,15 @@ public class sections extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel5.setText("DESCREPTION");
+        jLabel5.setText("Aisle");
 
         jTextField6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(102, 153, 255));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 204));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -147,7 +153,7 @@ public class sections extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ID", "NAME", "DESCREPTION"
+                "ID", "NAME", "Aisle"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -158,6 +164,11 @@ public class sections extends javax.swing.JFrame {
 
         jTextField7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(102, 153, 255));
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -170,16 +181,17 @@ public class sections extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(67, 67, 67)
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(191, 191, 191)
                         .addComponent(jButton1)
@@ -193,7 +205,7 @@ public class sections extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButton4))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
@@ -330,13 +342,18 @@ public class sections extends javax.swing.JFrame {
         // TODO add your handling code here:
          try{
             con = DriverManager.getConnection("\"C:\\Users\\fatim\\Desktop\\DB\\Supermarket-management-system-master\\SuperMarket_PROJECT.sql\"", "root","FHA6-fha6" );
-            statement=con.createStatement();
-            rs=statement.executeQuery("INSERT INTO sections values(?,?,?,?)");
+            PreparedStatement add=con.prepareCall("INSERT INTO sections values(?,?,?,?)");
+              add.setString(1, Sname);
+            add.setString(2, SID);
+            add.setInt(3,Integer.valueOf(aisle) );
+            int row=add.executeUpdate();
+             
+            
         }
-        catch(SQLException se){
-            se.printStackTrace();
+        catch(Exception e){
+            e.printStackTrace();
         }
-          jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+          
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -352,13 +369,21 @@ public class sections extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-      String caID=evt.getActionCommand();
+       SID=jTextField6.getText();
         
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+ aisle=jTextField6.getText();        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+Sname=jTextField7.getText();        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
     /**
      * @param args the command line arguments
