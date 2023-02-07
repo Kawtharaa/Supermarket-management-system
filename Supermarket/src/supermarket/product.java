@@ -44,7 +44,7 @@ public class product //extend sections
             return;
         }
         try {
-            int Quantity = Integer.parseInt(quantity.getText());
+            int Quantity = Integer.parseInt(guantity.getText());
             int Pr = Integer.parseInt(price.getText());
             if (Quantity <= 0 || Pr <= 0) {
                 JOptionPane.showMessageDialog(this, "Enter only positive integer value");
